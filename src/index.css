@@ -43,7 +43,7 @@
   --radius-xl:calc(var(--radius) + 4px)}
 
 .fade-in {
-  animation: fadeIn 0.8s ease-in-out;
+  animation: fadeIn 1.2s ease-in-out;
 }
 .animate-fade-in {
   animation: fadeIn 0.5s ease-in-out;

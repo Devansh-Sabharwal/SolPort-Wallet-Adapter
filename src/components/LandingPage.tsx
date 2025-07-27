@@ -54,7 +54,7 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-        <div className="px-4 font-inter mt-20 text-4xl sm:text-6xl lg:text-[76px]  text-center tracking-[-0.04em] sm:tracking-[-0.06em] leading-[1] flex justify-center">
+        <div className="px-4 fade-in font-inter mt-20 text-4xl sm:text-6xl lg:text-[76px]  text-center tracking-[-0.04em] sm:tracking-[-0.06em] leading-[1] flex justify-center">
           <div>
             <div>
               <div>Lightning-fast wallet integration</div>
@@ -69,7 +69,7 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
-        <div className="mt-16 flex flex-col items-center px-4">
+        <div className="mt-16 fade-in flex flex-col items-center px-4">
           <span className="text-lg sm:text-xl md:text-2xl font-semibold text-neutral-800 dark:text-white mb-4">
             Supports
           </span>
