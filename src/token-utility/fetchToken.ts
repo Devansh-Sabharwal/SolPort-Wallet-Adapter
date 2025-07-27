@@ -1,28 +1,26 @@
-import {
-  Connection,
-  PublicKey,
-} from '@solana/web3.js';
+import { Connection, PublicKey } from "@solana/web3.js";
 
 import {
   TOKEN_PROGRAM_ID,
   TOKEN_2022_PROGRAM_ID,
-  getMint,
   getTokenMetadata,
-} from '@solana/spl-token';
+} from "@solana/spl-token";
 
-
-const connection = new Connection('https://solana-devnet.g.alchemy.com/v2/j4QvjEP5_bfvPn-9H-jZl7ZpoN25GO4l');
+const connection = new Connection(
+  "https://solana-devnet.g.alchemy.com/v2/j4QvjEP5_bfvPn-9H-jZl7ZpoN25GO4l"
+);
 
 export async function getAllTokensForWallet(publicKey: PublicKey) {
- 
   const splTokens = await connection.getParsedTokenAccountsByOwner(publicKey, {
     programId: TOKEN_PROGRAM_ID,
   });
 
-
-  const token22Accounts = await connection.getParsedTokenAccountsByOwner(publicKey, {
-    programId: TOKEN_2022_PROGRAM_ID,
-  });
+  const token22Accounts = await connection.getParsedTokenAccountsByOwner(
+    publicKey,
+    {
+      programId: TOKEN_2022_PROGRAM_ID,
+    }
+  );
 
   const allTokens: any[] = [];
 
@@ -33,9 +31,9 @@ export async function getAllTokensForWallet(publicKey: PublicKey) {
       mint: data.mint,
       balance: data.tokenAmount.uiAmount,
       decimals: data.tokenAmount.decimals,
-      programType: 'SPL Token',
-      name: 'Unknown Token',
-      symbol: 'UNKNOWN',
+      programType: "SPL Token",
+      name: "Unknown Token",
+      symbol: "UNKNOWN",
       image: "/image.png",
       uri: null,
     });
@@ -46,8 +44,8 @@ export async function getAllTokensForWallet(publicKey: PublicKey) {
     const data = tokenAccount.account.data.parsed.info;
     const mintAddress = new PublicKey(data.mint);
 
-    let name = 'Unknown Token';
-    let symbol = 'UNKNOWN';
+    let name = "Unknown Token";
+    let symbol = "UNKNOWN";
     let image = null;
     let uri = null;
 
@@ -55,13 +53,13 @@ export async function getAllTokensForWallet(publicKey: PublicKey) {
       const metadata = await getTokenMetadata(
         connection,
         mintAddress,
-        'confirmed',
+        "confirmed",
         TOKEN_2022_PROGRAM_ID
       );
 
       if (metadata) {
-        name = metadata.name || 'Unknown Token';
-        symbol = metadata.symbol || 'UNKNOWN';
+        name = metadata.name || "Unknown Token";
+        symbol = metadata.symbol || "UNKNOWN";
         uri = metadata.uri || null;
 
         // If there's a URI, try to fetch the JSON metadata
@@ -71,20 +69,24 @@ export async function getAllTokensForWallet(publicKey: PublicKey) {
             const jsonMetadata = await response.json();
             image = jsonMetadata.image || null;
           } catch (e) {
-            console.warn(`⚠️ Failed to fetch JSON metadata from URI: ${metadata.uri}`);
+            console.warn(
+              `⚠️ Failed to fetch JSON metadata from URI: ${metadata.uri}`
+            );
           }
         }
       }
-
     } catch (e) {
-      console.warn(`⚠️ Token-22 metadata not found for ${mintAddress.toBase58()}:`, e);
+      console.warn(
+        `⚠️ Token-22 metadata not found for ${mintAddress.toBase58()}:`,
+        e
+      );
     }
 
     allTokens.push({
       mint: data.mint,
       balance: data.tokenAmount.uiAmount,
       decimals: data.tokenAmount.decimals,
-      programType: 'Token-22',
+      programType: "Token-22",
       name,
       symbol,
       image,
@@ -92,6 +94,5 @@ export async function getAllTokensForWallet(publicKey: PublicKey) {
     });
   }
 
-  
   return allTokens;
 }

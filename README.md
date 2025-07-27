@@ -1,69 +1,57 @@
-# React + TypeScript + Vite
+# ⚡ SolPort
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**SolPort** is a modern Solana wallet connector built with React and the `@solana/wallet-adapter` library.  
+It provides a seamless interface for connecting multiple Solana wallets, viewing balances, managing SPL tokens, and sending both SOL and tokens — all wrapped in a beautiful dark/light theme.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔗 **Connect Multiple Wallets** — Phantom, Solflare, Backpack, and more via wallet adapter.
+- 💰 **View SOL Balance** — Instantly check your wallet's SOL holdings.
+- 🪙 **SPL Token Support** — View SPL token list with name, symbol, and metadata.
+- ✈️ **Send SOL or Tokens** — Simple UI to send SOL and SPL tokens securely.
+- 🌙 **Dark & Light Themes** — Fully responsive and theme-aware interface.
+- ⚛️ **Built with React + Vite** — Lightning-fast performance and DX.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🧩 Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- `React`
+- `Vite`
+- `@solana/web3.js`
+- `@solana/wallet-adapter`
+- `TailwindCSS`
+- `TypeScript`
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🔧 Getting Started
+
+### 1. Clone the Repo
+
+```
+git clone https://github.com/Devansh-Sabharwal/SolPort-Wallet-Adapter.git
+cd wallet-adapter
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```
+npm install
+```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Add Environment Variables
+
+Create a .env file in the root:
+
+```
+VITE_RPC_URL=YOUR_RPC_URL
+```
+
+### 4. RUN THE APP
+
+```
+npm run dev
 ```
